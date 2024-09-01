@@ -22,10 +22,11 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       </CardHeader>
       <CardContent>
         <Image
-          fill
+          width={100}
+          height={100}
           src={product.thumbnail}
           alt={product.title}
-          className="w-full h-40 object-cover mb-2 rounded"
+          className="object-cover mb-2 rounded"
         ></Image>
         <p className="text-sm text-gray-700">{product.description}</p>
       </CardContent>

@@ -2,14 +2,22 @@ import { createContext, useState, ReactNode, useContext } from "react";
 
 type AuthContextType = {
   user: string | null;
+  // eslint-disable-next-line no-unused-vars
   login: (username: string, password: string) => void;
   logout: () => void;
+  isUserExists: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<string | null>(null);
+
+  const isUserExists = () => {
+    if (user != '' || user != null)
+      return true;
+    else return false;
+  }
 
   const login = (username: string, password: string) => {
     setUser(username);
@@ -22,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, isUserExists }}>
       {children}
     </AuthContext.Provider>
   );

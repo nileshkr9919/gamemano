@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchAllProducts } from "./services/productService";
-import ProductCard from "./components/ProductCard";
 import { Product } from "./types";
 import './styles/style.css';
-import Carousel from "@repo/ui/components/custom-carousel";
+import Banner from "./components/Banner";
+import TrendingProducts from './components/TrendingProducts';
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -31,16 +31,12 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="p-4" style={{ backgroundColor: 'radial-gradient(circle, rgba(53,41,22,1) 43%, rgba(53,41,22,1) 95%)' }}>
-      <Carousel
-        slides={slides}
-        interval={3000}
-        containerClassName="relative w-full"
-        slideClassName="w-full h-full object-cover rounded-lg shadow-lg"
-      />
+    <div className="p-4 flex flex-col gap-8">
+      <Banner slides={slides} />
 
-
-      <div className="grid grid-cols-3 gap-4">
+      <TrendingProducts products={products} />
+      {/* <Advertisment /> */}
+      {/* <div className="grid grid-cols-3 gap-4">
         {products.length > 0 ? (
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
@@ -48,7 +44,7 @@ export default function HomePage() {
         ) : (
           <p>{error || "No products available"}</p>
         )}
-      </div>
+      </div> */}
       {/* <Notification /> */}
     </div>
   );

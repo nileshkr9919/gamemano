@@ -2,35 +2,50 @@
 import React from 'react';
 import { Bell, ShoppingBag, Search } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@repo/ui/components/ui/dropdown-menu';
+import Logo from '../assets/images/GQ.png';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const Header: React.FC = () => {
-    return (
-        <div className="flex items-center justify-between py-4 px-4 bg-black text-white sticky top-0 z-50">
-            {/* Left Side Links */}
-            <ul className="flex items-center space-x-3 text-sm font-medium">
-                <li className='list-none'>
-                    <a href="/" className="hover:text-gray-400 transition-colors px-4 border-right py-2">
-                        Home
-                    </a>
-                </li>
-                <li className='list-none'>
-                    <a href="javascript:void(0);" className="hover:text-gray-400 transition-colors px-4 py-2 border-right">
-                        Game Store
-                    </a>
-                </li>
-                <li className='list-none'>
-                    <a href="javascript:void(0);" className="hover:text-gray-400 px-4 transition-colors">
-                        Leaderboard
-                    </a>
-                </li>
-            </ul>
+    const pathname = usePathname();
 
+    return (
+        <div className="flex items-center justify-between py-4 px-4 topbar-bg text-white sticky top-0 z-50" style={{ backgroundColor: 'rgba(33,31,24,1)' }}>
+            {/* Left Side Links */}
+            <div className='flex items-center justify-between'>
+                {
+                    (pathname !== '/') ?
+                        <div className="p-4">
+                            <Image src={Logo} alt='LOGO' width={50} height={50} />
+                        </div>
+                        :
+                        <></>
+                }
+
+                <ul className="flex items-center space-x-3 text-sm font-medium hidden lg:flex">
+                    <li className='list-none'>
+                        <a href="/" className="hover:text-gray-400 transition-colors px-4 border-right py-2">
+                            Home
+                        </a>
+                    </li>
+                    <li className='list-none'>
+                        <a href="/products" className="hover:text-gray-400 transition-colors px-4 py-2 border-right">
+                            Game Store
+                        </a>
+                    </li>
+                    <li className='list-none'>
+                        <a href="javascript:void(0);" className="hover:text-gray-400 px-4 transition-colors">
+                            Leaderboard
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
             {/* Right Side Icons */}
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-1 m-auto lg:m-0">
                 {/* Search Bar */}
                 <div className='border-right px-4'>
-                    <div className="flex items-center bg-black px-4 border-gray-400 border-2 py-2 rounded-full w-96">
+                    <div className="flex items-center topbar-bg px-4 border-gray-400 border-2 py-2 rounded-full w-96">
                         <Search className="text-white" />
                         <input
                             type="text"

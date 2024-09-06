@@ -11,9 +11,9 @@ import {
 import { Product } from "../types";
 import Image from "next/image";
 
-const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+const ProductCard: React.FC<{ product: Product, customClass?: string }> = ({ product, customClass }) => {
   return (
-    <Card className="max-w-sm border rounded-md shadow-md">
+    <Card className={`${customClass} max-w-sm border rounded-md shadow-md`}>
       <CardHeader>
         <CardTitle>{product.title}</CardTitle>
         <CardDescription className="text-gray-500">

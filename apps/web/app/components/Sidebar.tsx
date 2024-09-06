@@ -2,7 +2,15 @@ import Image from 'next/image';
 import Logo from '../assets/images/GQ.png';
 import BgLogo from '../assets/images/GameQuest.png';
 import React, {useState} from 'react';
-import {CreditCard, LogOut, Mail, Settings, Store, Trophy, Home} from 'lucide-react';
+import {
+  CreditCard,
+  LogOut,
+  Mail,
+  Settings,
+  Store,
+  Trophy,
+  Home,
+} from 'lucide-react';
 import {useAuth} from '../context/AuthContext';
 
 const Sidebar: React.FC = () => {

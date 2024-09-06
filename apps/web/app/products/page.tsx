@@ -7,7 +7,7 @@ import ProductCard from '../components/ProductCard';
 import Categories from '../components/Categories';
 import '../styles/style.css';
 
-const page = () => {
+const Page = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [filter, setFilter] = useState<filterI>({
@@ -16,6 +16,7 @@ const page = () => {
   });
 
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState<boolean>(true); // State to manage loading
 
   useEffect(() => {
     const getCategories = async () => {
@@ -23,7 +24,7 @@ const page = () => {
         const data = await fetchAllCategories();
         setCategories(data.data);
       } catch (err) {
-        setError('Failed to fetch products');
+        setError('Failed to fetch categories');
       }
     };
 
@@ -36,36 +37,45 @@ const page = () => {
       }
     };
 
-    getProducts();
-    getCategories();
+    Promise.all([getCategories(), getProducts()]).finally(() =>
+      setLoading(false),
+    );
   }, []);
 
   useEffect(() => {
     let temp: CategoryFilterI[] = [];
-    categories.length !== 0 &&
+    if (categories.length !== 0) {
       categories.forEach((category: Category) => {
-        temp.push({name: category?.name, slug: category.slug, change: false});
+        temp.push({name: category.name, slug: category.slug, change: false});
       });
-
+    }
     setFilter({...filter, categoryFilter: temp});
   }, [categories]);
 
   return (
     <div className="flex gap-6 p-6">
-      {filter.categoryFilter.length > 0 && (
-        <Categories categoryFilter={filter.categoryFilter} />
+      {loading ? (
+        <div className="flex justify-center items-center w-full min-h-[80vh]">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <>
+          {filter.categoryFilter.length > 0 && (
+            <Categories categoryFilter={filter.categoryFilter} />
+          )}
+          <div className="grid grid-cols-3 gap-4">
+            {products.length > 0 ? (
+              products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
+            ) : (
+              <p>{error || 'No products available'}</p>
+            )}
+          </div>
+        </>
       )}
-      <div className="grid grid-cols-3 gap-4">
-        {products.length > 0 ? (
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))
-        ) : (
-          <p>{error || 'No products available'}</p>
-        )}
-      </div>
     </div>
   );
 };
 
-export default page;
+export default Page;

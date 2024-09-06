@@ -31,7 +31,7 @@
     "embla-carousel-autoplay": "^8.2.0",
     "embla-carousel-class-names": "^8.2.1",
     "embla-carousel-react": "^8.2.0",
-    "lucide-react": "^0.395.0",
+    "lucide-react": "^0.439.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   },

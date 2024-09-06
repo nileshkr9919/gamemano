@@ -1,5 +1,5 @@
 // packages/ui/components/ProductCard.tsx
-import React from "react";
+import React from 'react';
 import {
   Card,
   CardHeader,
@@ -7,11 +7,14 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@repo/ui/components/ui/card";
-import { Product } from "../types";
-import Image from "next/image";
+} from '@repo/ui/components/ui/card';
+import {Product} from '../types';
+import Image from 'next/image';
 
-const ProductCard: React.FC<{ product: Product, customClass?: string }> = ({ product, customClass }) => {
+const ProductCard: React.FC<{product: Product; customClass?: string}> = ({
+  product,
+  customClass,
+}) => {
   return (
     <Card className={`${customClass} max-w-sm border rounded-md shadow-md`}>
       <CardHeader>

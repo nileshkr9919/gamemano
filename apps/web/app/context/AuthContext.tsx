@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, useContext } from "react";
+import {createContext, useState, ReactNode, useContext} from 'react';
 
 type AuthContextType = {
   user: string | null;
@@ -10,27 +10,26 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({children}: {children: ReactNode}) => {
   const [user, setUser] = useState<string | null>(null);
 
   const isUserExists = () => {
-    if (user != '' || user != null)
-      return true;
+    if (user != '' || user != null) return true;
     else return false;
-  }
+  };
 
   const login = (username: string, password: string) => {
     setUser(username);
-    localStorage.setItem("user", JSON.stringify({ username, password }));
+    localStorage.setItem('user', JSON.stringify({username, password}));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isUserExists }}>
+    <AuthContext.Provider value={{user, login, logout, isUserExists}}>
       {children}
     </AuthContext.Provider>
   );
@@ -39,7 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };

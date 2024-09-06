@@ -1,7 +1,7 @@
-import api from "@repo/utils";
+import api from '@repo/utils';
 
 export const fetchAllProducts = async () => {
-  const response = await api.get("/products");
+  const response = await api.get('/products');
   return response.data;
 };
 
@@ -11,11 +11,11 @@ export const fetchProductById = async (id: string) => {
 };
 
 export const fetchAllCategories = async () => {
-  const response = await api.get('/products/categories')
+  const response = await api.get('/products/categories');
   return response;
-}
+};
 
 export const fetchProductsByCategory = async (category: string) => {
-  const response = await api.get(`/products/category/${category}`)
+  const response = await api.get(`/products/category/${category}`);
   return response;
-}
+};

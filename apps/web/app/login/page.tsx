@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import { Button } from "@repo/ui/components/ui/button";
+import {useState} from 'react';
+import {useAuth} from '../context/AuthContext';
+import {Button} from '@repo/ui/components/ui/button';
 
 export default function LoginPage() {
-  const { login } = useAuth();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const {login} = useAuth();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
     login(username, password);

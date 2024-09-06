@@ -1,21 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
-import { Product } from '../types';
+import React, {useEffect, useState} from 'react';
+import {Product} from '../types';
 import ProductCard from './ProductCard';
-import { Carousel, CarouselContent, CarouselItem } from '@repo/ui/components/ui/carousel';
-import { Card, CardContent } from '@repo/ui/components/ui/card';
-import Autoplay from 'embla-carousel-autoplay'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@repo/ui/components/ui/carousel';
+import {Card, CardContent} from '@repo/ui/components/ui/card';
+import Autoplay from 'embla-carousel-autoplay';
 
 interface TrendingProductsI {
-    products: Product[]
+  products: Product[];
 }
 
 const TrendingProducts = (props: TrendingProductsI) => {
-    const { products } = props;
+  const {products} = props;
 
-    return (
-        <div>
-            {/* <Carousel
+  return (
+    <div>
+      {/* <Carousel
                 slides={products}
                 slideStructure={slideStructure}
                 interval={5000}
@@ -23,7 +27,7 @@ const TrendingProducts = (props: TrendingProductsI) => {
             // slideClassName="w-full h-full object-cover rounded-lg shadow-lg"
             /> */}
 
-            {/* <Carousel className="w-screen" plugins={[
+      {/* <Carousel className="w-screen" plugins={[
                 Autoplay({
                     delay: 2000,
                 }),
@@ -38,11 +42,11 @@ const TrendingProducts = (props: TrendingProductsI) => {
                         </CarouselItem>
                     ))}
                 </CarouselContent> */}
-                {/* <CarouselPrevious />
+      {/* <CarouselPrevious />
       <CarouselNext /> */}
-            {/* </Carousel> */}
-        </div>
-    )
-}
+      {/* </Carousel> */}
+    </div>
+  );
+};
 
-export default TrendingProducts
+export default TrendingProducts;

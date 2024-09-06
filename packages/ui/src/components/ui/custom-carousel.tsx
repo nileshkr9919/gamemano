@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
-import { Product } from '../../../../../apps/web/app/types/product.type';
+import React, {useState, useEffect} from 'react';
+import {Product} from '../../../../../apps/web/app/types/product.type';
 
 interface ObjectI {
   [key: string]: string;
@@ -21,9 +21,9 @@ const Carousel: React.FC<CarouselProps> = ({
   slides,
   slideStructure,
   interval = 3000,
-  containerClassName = "relative w-full",
-  dotClassName = "w-3 h-3 rounded-full transition-colors",
-  activeDotClassName = "bg-yellow-300",
+  containerClassName = 'relative w-full',
+  dotClassName = 'w-3 h-3 rounded-full transition-colors',
+  activeDotClassName = 'bg-yellow-300',
   customStyle = {},
 }) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
@@ -35,7 +35,7 @@ const Carousel: React.FC<CarouselProps> = ({
   useEffect(() => {
     const slideInterval = setInterval(() => {
       setCurrentSlide((prevSlide) =>
-        prevSlide === slides.length - 1 ? 0 : prevSlide + 1
+        prevSlide === slides.length - 1 ? 0 : prevSlide + 1,
       );
     }, interval);
 
@@ -48,13 +48,14 @@ const Carousel: React.FC<CarouselProps> = ({
       <div className="relative w-full overflow-hidden">
         <div
           className="flex transition-transform duration-1000 ease-in-out"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          style={{transform: `translateX(-${currentSlide * 100}%)`}}
         >
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={`flex-shrink-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"
-                }`}
+              className={`flex-shrink-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
             >
               {slideStructure(slide, index)}
             </div>
@@ -68,11 +69,13 @@ const Carousel: React.FC<CarouselProps> = ({
           <div
             key={index}
             onClick={() => goToSlide(index)}
-            className={`${dotClassName} ${index === currentSlide ? activeDotClassName : "bg-gray-300"
-              }`}
+            className={`${dotClassName} ${
+              index === currentSlide ? activeDotClassName : 'bg-gray-300'
+            }`}
             style={{
-              backgroundColor: `${currentSlide === index ? "#FDF3BC" : "white"
-                }`,
+              backgroundColor: `${
+                currentSlide === index ? '#FDF3BC' : 'white'
+              }`,
             }}
           ></div>
         ))}

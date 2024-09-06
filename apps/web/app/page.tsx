@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { fetchAllProducts } from "./services/productService";
-import { Product } from "./types";
+import React, {useEffect, useState} from 'react';
+import {fetchAllProducts} from './services/productService';
+import {Product} from './types';
 import './styles/style.css';
-import Banner from "./components/Banner";
+import Banner from './components/Banner';
 import TrendingProducts from './components/TrendingProducts';
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const slides = [
-    "https://res.cloudinary.com/epiphanystudios/image/upload/v1474325161/Billboard_-_AnalyticsBanner_s0vsiv.jpg",
-    "https://res.cloudinary.com/epiphanystudios/image/upload/v1474389520/Billboard_-_HipsterBanner_rzyv5r.jpg",
-    "https://res.cloudinary.com/epiphanystudios/image/upload/v1474389522/Billboard_-_ProductsBanner_kfucs3.jpg",
+    'https://res.cloudinary.com/epiphanystudios/image/upload/v1474325161/Billboard_-_AnalyticsBanner_s0vsiv.jpg',
+    'https://res.cloudinary.com/epiphanystudios/image/upload/v1474389520/Billboard_-_HipsterBanner_rzyv5r.jpg',
+    'https://res.cloudinary.com/epiphanystudios/image/upload/v1474389522/Billboard_-_ProductsBanner_kfucs3.jpg',
   ];
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function HomePage() {
         const data = await fetchAllProducts();
         setProducts(data.products);
       } catch (err) {
-        setError("Failed to fetch products");
+        setError('Failed to fetch products');
       }
     };
 

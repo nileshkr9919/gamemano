@@ -1,46 +1,62 @@
 // packages/ui/components/ProductCard.tsx
 import React from 'react';
 import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
+	Card,
+	CardHeader,
+	CardTitle,
+	CardContent,
+	CardFooter,
 } from '@repo/ui/components/ui/card';
-import {Product} from '../types';
+import { Product } from '../types';
 import Image from 'next/image';
+import { StarFilledIcon, StarIcon } from '@radix-ui/react-icons'
+import { Button } from '@repo/ui/components/ui/button';
+import NoImage from '../assets/images/noImage.png';
+// import LazyLoad from 'react-lazyload';
 
-const ProductCard: React.FC<{product: Product; customClass?: string}> = ({
-  product,
-  customClass,
+const ProductCard: React.FC<{ product: Product; customClass?: string }> = ({
+	product,
+	customClass,
 }) => {
-  return (
-    <Card className={`${customClass} max-w-sm border rounded-md shadow-md`}>
-      <CardHeader>
-        <CardTitle>{product.title}</CardTitle>
-        <CardDescription className="text-gray-500">
-          ${product.price}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Image
-          width={100}
-          height={100}
-          src={product.thumbnail}
-          alt={product.title}
-          className="object-cover mb-2 rounded"
-        ></Image>
-        <p className="text-sm text-gray-700">{product.description}</p>
-      </CardContent>
-      <CardFooter className="flex justify-between items-center">
-        <button className="bg-primary text-white px-3 py-1 rounded hover:bg-blue-600">
-          Add to Cart
-        </button>
-        <button className="text-primary hover:underline">View Details</button>
-      </CardFooter>
-    </Card>
-  );
+
+	const ratings = (rating: number) => {
+		return (
+			<div className="flex space-x-1">
+				{[...Array(5)].map((_, index) => (  //Loop to generate 5 stars
+					<span key={index}>
+						{index < Math.round(+rating) ? (
+							<StarFilledIcon className='bg-star' />
+						) : (
+							<StarIcon className='bg-star' />
+						)}
+					</span>
+				))}
+			</div>
+		)
+	}
+	return (
+		<Card className={`${customClass} h-auto max-w-sm border rounded-md shadow-md relative`}>
+			<CardHeader>
+				<Image
+					width={200}
+					height={100}
+					src={product.thumbnail || NoImage}
+					alt={product.title}
+					className="mx-auto rounded"
+				/>
+			</CardHeader>
+
+			<CardContent className='flex flex-col gap-2'>
+				<CardTitle>{product.title}</CardTitle>
+				{ratings(+product.rating ?? 0)}
+				<p className="text-sm text-gray-700">{product.description}</p>
+			</CardContent>
+			<CardFooter className="flex justify-between items-center flex-wrap gap-4">
+				<p>${product.price}</p>
+				<Button className='bg-product-card-btn'>View Details</Button>
+			</CardFooter>
+		</Card>
+	);
 };
 
 export default ProductCard;

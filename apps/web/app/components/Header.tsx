@@ -11,25 +11,23 @@ import {
 } from '@repo/ui/components/ui/dropdown-menu';
 import Logo from '../assets/images/GQ.png';
 import Image from 'next/image';
-import {usePathname} from 'next/navigation';
 
 const Header: React.FC = () => {
-  const pathname = usePathname();
 
   return (
-    <div
+    <header
       className="flex items-center justify-between py-4 px-4 topbar-bg text-white sticky top-0 z-50"
       style={{backgroundColor: 'rgba(33,31,24,1)'}}
     >
       {/* Left Side Links */}
       <div className="flex items-center justify-between">
-        {pathname !== '/' ? (
+        {/* {pathname !== '/' ? ( */}
           <div className="p-4">
             <Image src={Logo} alt="LOGO" width={50} height={50} />
           </div>
-        ) : (
+        {/* ) : (
           <></>
-        )}
+        )} */}
 
         <ul className="flex items-center space-x-3 text-sm font-medium hidden lg:flex">
           <li className="list-none">
@@ -76,7 +74,7 @@ const Header: React.FC = () => {
         {/* Notification Bell with red dot */}
         <div className="border-right px-4">
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger className='outline-0'>
               <div className="h-10 w-10 rounded-full border border-white flex items-center justify-center cursor-pointer">
                 <div className="relative">
                   <Bell className="text-white" />
@@ -84,12 +82,12 @@ const Header: React.FC = () => {
                 </div>
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-black">
+            <DropdownMenuContent className="bg-black text-white  p-3 border-0" style={{ borderRadius: '10px' }}>
               <DropdownMenuLabel>Notifications(3)</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Sample Notification 1</DropdownMenuItem>
-              <DropdownMenuItem>Sample Notification 2</DropdownMenuItem>
-              <DropdownMenuItem>Sample Notification 3</DropdownMenuItem>
+              <DropdownMenuItem className="px-4 py-2 cursor-pointer bg-hover-orange rounded-md">Sample Notification 1</DropdownMenuItem>
+              <DropdownMenuItem className="px-4 py-2 cursor-pointer bg-hover-orange rounded-md">Sample Notification 2</DropdownMenuItem>
+              <DropdownMenuItem className="px-4 py-2 cursor-pointer bg-hover-orange rounded-md">Sample Notification 3</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -106,7 +104,7 @@ const Header: React.FC = () => {
           <div className="h-10 w-10 rounded-full border border-white cursor-pointer"></div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

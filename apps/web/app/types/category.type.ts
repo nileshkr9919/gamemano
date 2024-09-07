@@ -7,7 +7,7 @@ export type Category = {
 export interface CategoryFilterI {
   name: string;
   slug: string;
-  change: boolean;
+  // change: boolean;
 }
 
 export interface SortingI {}

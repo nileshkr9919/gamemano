@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import Logo from '../assets/images/GQ.png';
-import BgLogo from '../assets/images/GameQuest.png';
+// import Image from 'next/image';
+// import Logo from '../assets/images/GQ.png';
+// import BgLogo from '../assets/images/GameQuest.png';
 import React, {useState} from 'react';
 import {
   CreditCard,
@@ -47,14 +47,14 @@ const Sidebar: React.FC = () => {
     >
       <div className="flex flex-col h-full">
         {/* LOGO */}
-        <div className="p-4 group-hover:block mt-4">
+        {/* <div className="p-4 group-hover:block mt-4">
           <Image
             src={isOpen ? BgLogo : Logo}
             alt="LOGO"
             width={isOpen ? '200' : '50'}
             height={isOpen ? '200' : '50'}
           />
-        </div>
+        </div> */}
 
         {/* SIDEBAR MENU */}
         <div className="flex flex-col h-full py-4">

@@ -19,6 +19,44 @@
   animation: spin 1s linear infinite;
 }
 
+.bg-light-yellow {
+  background-color: #FDF3BC;
+}
+
+.rounded-10 {
+  border-radius: 10px;
+}
+
+.bg-star {
+  color: gold;
+}
+
+.bg-product-card-btn {
+  background-color: #E58F28;
+  color: #ffffff;
+  border-radius: 25px;
+}
+
+.bg-product-card-btn:hover {
+  background-color: #825621;
+  color: #ffffff;
+  border-radius: 25px;
+}
+
+.max-height-520 {
+  max-height: 520px;
+}
+
+.bg-dark-brown {
+  background-color: #342D21;
+}
+
+.bg-hover-orange:hover {
+  background-color: #E58F28;
+  color: #ffffff;
+  border-radius: 25px;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

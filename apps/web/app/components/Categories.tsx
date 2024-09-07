@@ -1,36 +1,48 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import {CategoryFilterI} from '../types/category.type';
-import {Checkbox} from '@repo/ui/components/ui/checkbox';
+import { CategoryFilterI } from '../types/category.type';
+import { Checkbox } from '@repo/ui/components/ui/checkbox';
 
-const Categories: React.FC<{categoryFilter: CategoryFilterI[]}> = ({
-  categoryFilter,
+const Categories: React.FC<{
+    categoryFilter: CategoryFilterI[],
+    selectedCategory: string,
+    setSelectedCategory: (val: string) => void
+}> = ({
+    categoryFilter,
+    selectedCategory,
+    setSelectedCategory
 }) => {
-  console.log(categoryFilter, 'asda');
-  return (
-    <aside
-      className={` h-auto text-white w-64 px-8 py-4 bg-dark-yellow`}
-      style={{borderRadius: '10px'}}
-    >
-      <div className="flex flex-col">
-        <h3>Categories</h3>
-        <ul className="space-y-4 mt-6 pb-6">
-          {categoryFilter.map((category: CategoryFilterI, idx: number) => {
-            return (
-              <li key={idx} className="flex items-center space-x-2">
-                <Checkbox id={category?.slug} />
-                <label
-                  htmlFor={category?.slug}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {category?.name}
-                </label>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </aside>
-  );
-};
+        const handleCategoryChange = (slug: string) => {
+            setSelectedCategory(slug === selectedCategory ? 'default' : slug);
+        };
+
+        return (
+            <aside
+                className="bg-dark-yellow text-white p-4 rounded-lg shadow-md max-w-full md:max-w-md lg:max-w-lg xl:max-w-xl"
+                style={{ borderRadius: '10px' }}
+            >
+                <h3 className="text-lg sm:text-xl font-bold mb-4 text-center md:text-left">
+                    Filter by Category
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {categoryFilter.map((category) => (
+                        <div
+                            key={category.slug}
+                            className="flex items-center space-x-3 cursor-pointer"
+                        >
+                            <Checkbox
+                                id={category.slug}
+                                checked={selectedCategory === category.slug}
+                                onCheckedChange={() => handleCategoryChange(category.slug)}
+                            />
+                            <label htmlFor={category.slug} className="text-sm font-medium">
+                                {category.name}
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            </aside>
+        );
+    };
 
 export default Categories;

@@ -20,9 +20,6 @@ const ProductCard: React.FC<{product: Product; customClass?: string}> = ({
   customClass,
 }) => {
   const router = useRouter();
-  const handleViewDetails = () => {
-    router.push(`/products/${product.id}`);
-  };
 
   const ratings = (rating: number) => {
     return (
@@ -58,19 +55,17 @@ const ProductCard: React.FC<{product: Product; customClass?: string}> = ({
         />
       </CardHeader>
 
-      <CardContent className="flex flex-col gap-2">
-        <CardTitle>{product.title}</CardTitle>
-        {ratings(Number(product.rating) ?? 0)}
-        <p className="text-sm text-gray-700">{product.description}</p>
-      </CardContent>
-      <CardFooter className="flex justify-between items-center flex-wrap gap-4">
-        <p>${product.price}</p>
-        <Button className="bg-product-card-btn" onClick={handleViewDetails}>
-          View Details
-        </Button>
-      </CardFooter>
-    </Card>
-  );
+			<CardContent className='flex flex-col gap-2'>
+				<CardTitle>{product.title}</CardTitle>
+				{ratings(+product.rating ?? 0)}
+				<p className="text-sm text-gray-700">{product.description}</p>
+			</CardContent>
+			<CardFooter className="flex justify-between items-center flex-wrap gap-4">
+				<p>${product.price}</p>
+				<Button className='bg-product-card-btn' onClick={() => router.push(`/products/${product.id}`)}>View Details</Button>
+			</CardFooter>
+		</Card>
+	);
 };
 
 export default ProductCard;

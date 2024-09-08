@@ -9,7 +9,8 @@ import {Product} from '~/app/types';
 import Image from 'next/image';
 import {Button} from '@repo/ui/components/ui/button';
 import {CheckCircle, ChevronLeft} from 'lucide-react';
-import {StarFilledIcon} from '@radix-ui/react-icons';
+import {StarFilledIcon, StarIcon} from '@radix-ui/react-icons';
+import '../../styles/style.css';
 // import { Box, Heading, Text, Button, Image } from '';
 
 const ProductPage = () => {
@@ -43,6 +44,23 @@ const ProductPage = () => {
       setLoading(false);
     });
   }, []);
+
+  const ratings = (rating: number) => {
+    return (
+      <div className="flex space-x-1">
+        {[...Array(5)].map((_, index) => (
+          <span key={index}>
+            {index < Math.round(+rating) ? (
+              <StarFilledIcon className="bg-star" />
+            ) : (
+              <StarIcon className="bg-star" />
+            )}
+          </span>
+        ))}
+      </div>
+    );
+  };
+
   console.log(product, 'path');
   return (
     <ProtectedRoute>
@@ -59,25 +77,20 @@ const ProductPage = () => {
 
         {/* Product Card */}
         <div
-          className=" rounded-lg shadow-lg w-full max-w-4xl "
+          className=" rounded-lg shadow-lg w-full max-w-4xl relative"
           style={{border: '1px solid #736E69'}}
         >
           <div className="p-8">
             {/* Release Date & Ratings */}
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-neutral-400 text-sm">
-                  RELEASE DATE: 30TH DECEMBER
-                </h3>
-                <div className="flex mt-2">
-                  {[...Array(5)].map((_, i) => (
-                    <StarFilledIcon
-                      key={i}
-                      className="w-4 h-4 text-yellow-500"
-                    />
-                  ))}
-                </div>
-              </div>
+
+            <div className="absolute bg-gray-900 pl-4 px-24 rounded-50 custom-product-badge">
+              <h3 className="text-neutral-400 text-sm">
+                RELEASE DATE: 30TH DECEMBER
+              </h3>
+            </div>
+
+            <div className="flex items-center mt-12 justify-between">
+              <div className="flex mt-2">{ratings(product.rating)}</div>
             </div>
 
             {/* Product Name */}

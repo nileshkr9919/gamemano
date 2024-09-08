@@ -23,7 +23,7 @@ export default function LoginPage() {
   }, [user, router]);
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 min-h-[75vh]">
       <input
         type="text"
         value={username}

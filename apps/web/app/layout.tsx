@@ -17,9 +17,9 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
           {/* <div className="flex">
             {pathname === '/' ? <Sidebar /> : <></>}
             <div className="flex-grow"> */}
-              <Header />
-              <main className="flex-grow">{children}</main>
-            {/* </div>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          {/* </div>
           </div> */}
           <Footer />
         </AuthProvider>

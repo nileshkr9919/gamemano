@@ -1,9 +1,14 @@
-// apps/gamemano-nextjs/hoc/ProtectedRoute.tsx
-import {useAuth} from '../context/AuthContext';
-import {useRouter} from 'next/router';
-import React, {ReactNode, useEffect} from 'react';
+'use client';
 
-const ProtectedRoute = ({children}: {children: React.ReactNode}) => {
+import {useAuth} from '../context/AuthContext';
+import {useRouter} from 'next/navigation';
+import React, {useEffect} from 'react';
+
+type ProtectedRouteProps = {
+  children: React.ReactNode;
+};
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({children}) => {
   const {user} = useAuth();
   const router = useRouter();
 

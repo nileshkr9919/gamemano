@@ -1,35 +1,57 @@
-import {createContext, useState, ReactNode, useContext} from 'react';
+'use client';
+
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react';
+import {useRouter} from 'next/navigation';
 
 type AuthContextType = {
   user: string | null;
-  // eslint-disable-next-line no-unused-vars
   login: (username: string, password: string) => void;
+  register: (username: string, password: string) => void;
   logout: () => void;
-  isUserExists: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({children}: {children: ReactNode}) => {
   const [user, setUser] = useState<string | null>(null);
+  const router = useRouter();
 
-  const isUserExists = () => {
-    if (user != '' || user != null) return true;
-    else return false;
-  };
+  useEffect(() => {
+    const storedUser = localStorage.getItem('username');
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
 
   const login = (username: string, password: string) => {
     setUser(username);
-    localStorage.setItem('user', JSON.stringify({username, password}));
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+    router.push('/');
+  };
+
+  const register = (username: string, password: string) => {
+    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const newUser = {username, password};
+    localStorage.setItem('users', JSON.stringify([...existingUsers, newUser]));
+    setUser(username);
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    router.push('/login');
   };
 
   return (
-    <AuthContext.Provider value={{user, login, logout, isUserExists}}>
+    <AuthContext.Provider value={{user, login, register, logout}}>
       {children}
     </AuthContext.Provider>
   );

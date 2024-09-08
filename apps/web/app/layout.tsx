@@ -7,11 +7,20 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 // import {usePathname} from 'next/navigation';
 
+import {Prosto_One} from 'next/font/google';
+
+const prostoOne = Prosto_One({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-prosto-one',
+  weight: '400',
+});
+
 const RootLayout = ({children}: {children: React.ReactNode}) => {
   // const pathname = usePathname();
 
   return (
-    <html lang="en">
+    <html lang="en" className={prostoOne.variable}>
       <body>
         <AuthProvider>
           {/* <div className="flex">

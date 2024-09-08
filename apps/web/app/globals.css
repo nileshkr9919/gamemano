@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 54,42,23,1;
   --background-end-rgb: 33,31,24,1;
+  --font-prosto-one: 'Prosto One', sans-serif;
 }
 
 @media (prefers-color-scheme: light) {
@@ -17,6 +18,7 @@
 }
 
 body {
+  font-family: var(--font-prosto-one);
   color: rgb(var(--foreground-rgb));
   /* background: linear-gradient(
       to bottom,

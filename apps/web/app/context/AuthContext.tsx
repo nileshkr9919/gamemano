@@ -33,7 +33,6 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
     setUser(username);
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
-    router.push('/');
   };
 
   const register = (username: string, password: string) => {
@@ -41,6 +40,7 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
     const newUser = {username, password};
     localStorage.setItem('users', JSON.stringify([...existingUsers, newUser]));
     setUser(username);
+    router.push('/');
   };
 
   const logout = () => {

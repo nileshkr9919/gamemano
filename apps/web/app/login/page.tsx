@@ -1,17 +1,26 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useAuth} from '../context/AuthContext';
 import {Button} from '@repo/ui/components/ui/button';
+import {useRouter} from 'next/navigation';
 
 export default function LoginPage() {
-  const {login} = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const {user, login} = useAuth();
+  const router = useRouter();
 
   const handleSubmit = () => {
     login(username, password);
   };
+
+  useEffect(() => {
+    if (user) {
+      const redirectURL = localStorage.getItem('redirectURL') || '/';
+      router.push(redirectURL);
+    }
+  }, [user, router]);
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4">
